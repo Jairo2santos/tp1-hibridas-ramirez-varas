@@ -1,5 +1,35 @@
 const Course = require('../models/course.models.js');
 
+exports.updateCourseTitle = async (req, res) => {
+    const { id } = req.params;
+    const { title } = req.body;
+
+    try {
+        await Course.findByIdAndUpdate(id, { title });
+        res.status(200).json({ message: "Título actualizado con éxito." });
+    } catch (error) {
+        console.error("Error al actualizar el título:", error);
+        res.status(500).send("Error interno del servidor");
+    }
+};
+
+exports.getSingleCourse = async (req, res) => {
+    const { id } = req.params;
+    
+    try {
+      const course = await Course.findById(id);
+      if (course) {
+        res.status(200).json(course);
+      } else {
+        res.status(404).send("Curso no encontrado");
+      }
+    } catch (error) {
+      console.error("Error al obtener el curso:", error);
+      res.status(500).send("Error interno del servidor");
+    }
+  };
+  
+
 exports.getAllCourses = async (req, res) => {
     const categoria = req.query.categories;
     const filterType = req.query.filter;

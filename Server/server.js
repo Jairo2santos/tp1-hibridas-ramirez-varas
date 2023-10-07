@@ -9,6 +9,9 @@ const coursesRoutes = require('./routes/courses.js');
 const categoriesRoutes = require('./routes/categories.js');
 
 app.use(cors());
+//Middleware 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // Montar las rutas en la aplicación
 app.use('/cursos', coursesRoutes);

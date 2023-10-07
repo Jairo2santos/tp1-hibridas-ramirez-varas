@@ -21,6 +21,7 @@
         </div>
         <CategoriaBadge :categoria="course.category"/>
         <div class="mt-2 text-sm text-gray-400">{{ course.startDate }}</div>
+       
 
       </div>
     </div>
@@ -40,6 +41,11 @@ export default {
     course: {
       type: Object,
       required: true
+    }
+  },
+  methods: {
+    editTitle() {
+      this.$router.push(`/editar-titulo/${this.course._id}`);
     }
   }
 }
