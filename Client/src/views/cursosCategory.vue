@@ -42,7 +42,7 @@ export default {
     async loadCursos(page) {
       try {
         const response = await axios.get(
-          `http://localhost:3000/cursos?categoria=${this.categoria}&page=${page}`
+          `http://localhost:3333/cursos?categoria=${this.categoria}&page=${page}`
         );
         this.courses = response.data.courses;
         this.totalPages = response.data.totalPages;
