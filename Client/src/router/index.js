@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import Home from '../views/home.vue';
 import cursos from '../views/cursos.vue';
+import usuarios from '../views/usuarios.vue';
 import cursosCategory from '../views/cursosCategory.vue';
 import EditarTitulo from "../views/EditarTitulo.vue";
 import DetalleCurso from "../views/DetalleCurso.vue";
@@ -17,12 +18,16 @@ const routes = [
     component: cursos
   },
   {
+    path: '/usuarios',
+    name: 'Usuarios',
+    component: usuarios
+  },
+  {
     path: '/categoria/:categoria',
     name: 'cursosCategory',
     component: cursosCategory,
     props: true
-  }
-  ,
+  },
   {
     path: "/editar-titulo/:courseId",
     name: "EditarTitulo",
