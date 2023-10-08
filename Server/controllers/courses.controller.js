@@ -1,5 +1,7 @@
 const Course = require('../models/course.models.js');
 
+
+
 exports.updateCourseTitle = async (req, res) => {
     const { id } = req.params;
     const { title } = req.body;
@@ -14,21 +16,21 @@ exports.updateCourseTitle = async (req, res) => {
 };
 
 exports.getSingleCourse = async (req, res) => {
-    const { id } = req.params;
-    
-    try {
-      const course = await Course.findById(id);
-      if (course) {
-        res.status(200).json(course);
-      } else {
-        res.status(404).send("Curso no encontrado");
-      }
-    } catch (error) {
-      console.error("Error al obtener el curso:", error);
-      res.status(500).send("Error interno del servidor");
-    }
-  };
+  const { id } = req.params;
   
+  try {
+    const course = await Course.findById(id);
+    if (course) {
+      res.status(200).json(course);
+    } else {
+      res.status(404).send("Curso no encontrado");
+    }
+  } catch (error) {
+    console.error("Error al obtener el curso:", error);
+    res.status(500).send("Error interno del servidor");
+  }
+};
+
 
 exports.getAllCourses = async (req, res) => {
     const categoria = req.query.categories;
@@ -65,6 +67,23 @@ exports.getAllCourses = async (req, res) => {
         res.json({ courses: cursos, totalPages: totalPages, totalCourses: totalCursos });
     } catch (error) {
         console.error("Error al obtener los cursos:", error);
+        res.status(500).send("Error interno del servidor");
+    }
+};
+// En controllers/courses.controller.js
+
+exports.searchCourses = async (req, res) => {
+    const query = req.query.q;
+
+    try {
+        const courses = await Course.find({
+            title: { $regex: new RegExp(query, 'i') }
+        });
+
+        res.status(200).json(courses);
+    } catch (error) {
+        console.error("Error al buscar cursos:", error);
+        console.error("Detalles del error:", error.message, error.stack);
         res.status(500).send("Error interno del servidor");
     }
 };

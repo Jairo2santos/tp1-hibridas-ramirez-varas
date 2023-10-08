@@ -62,7 +62,7 @@
       const courseId = this.$route.params.id;
   
       try {
-        const response = await axios.get(`http://localhost:3000/cursos/${courseId}`);
+        const response = await axios.get(`http://localhost:3333/cursos/${courseId}`);
         this.course = response.data;
       } catch (error) {
         console.error("Error obteniendo el detalle del curso:", error);

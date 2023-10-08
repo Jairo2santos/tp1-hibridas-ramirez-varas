@@ -26,7 +26,7 @@
     methods: {
       async updateTitle() {
         try {
-          const response = await axios.put(`http://localhost:3000/cursos/${this.courseId}/title`, {
+          const response = await axios.put(`http://localhost:3333/cursos/${this.courseId}/title`, {
             title: this.newTitle
           });
           this.message = response.data.message;

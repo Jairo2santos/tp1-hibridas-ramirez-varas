@@ -10,10 +10,15 @@ const CourseSchema = new mongoose.Schema({
   summary: String,
   link: String,
   imgUrl: String,
-  category: String
+  category: String,
 });
 
 const Course = mongoose.model('course', CourseSchema, 'cursos_UTN');
 
 
 module.exports = Course;
+// Dentro de course.models.js
+
+
+ 
+

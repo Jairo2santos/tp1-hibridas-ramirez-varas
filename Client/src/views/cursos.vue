@@ -1,5 +1,10 @@
 <!-- Cursos.vue -->
 <template>
+  <Portada 
+    
+  :totalCourses="courses.length"
+      
+    />
   <div class="flex container mx-auto p-4">
     <!-- Sidebar a la izquierda -->
     <div>
