@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import CategoriaBadge from './categoriaTag.vue'; // Asegúrate de proporcionar la ruta correcta
+import CategoriaBadge from './CategoriaTag.vue'; // Asegúrate de proporcionar la ruta correcta
 
 
 export default {

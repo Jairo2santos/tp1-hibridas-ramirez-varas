@@ -1,10 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import Home from '../views/Home.vue';
 import cursos from '../views/cursos.vue';
-import usuarios from '../views/usuarios.vue';
+import login from '../views/login.vue';
 import cursosCategory from '../views/cursosCategory.vue';
 import EditarTitulo from "../views/EditarTitulo.vue";
 import DetalleCurso from "../views/DetalleCurso.vue";
+import profile from  "../views/profile.vue";
 
 const routes = [
   {
@@ -18,9 +19,9 @@ const routes = [
     component: cursos
   },
   {
-    path: '/usuarios',
-    name: 'Usuarios',
-    component: usuarios
+    path: '/login',
+    name: 'login',
+    component: login
   },
   {
     path: '/categoria/:categoria',
@@ -38,6 +39,12 @@ const routes = [
     path: "/curso/:id",
     name: "DetalleCurso",
     component: DetalleCurso,
+    props: true
+  },
+  {
+    path: "/profile/",
+    name: "profile",
+    component: profile,
     props: true
   },
   

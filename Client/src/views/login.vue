@@ -22,35 +22,44 @@
             required
           />
         </div>
+        <p>usuario: user pass: 12345</p>
         <button type="submit">Ingresar</button>
       </form>
     </div>
   </template>
   
   <script>
-  export default {
-    data() {
-      return {
-        username: '',
-        password: ''
-      };
-    },
-    methods: {
-      async login() {
-        // Agregar la lógica de inicio de sesión con MongoDB aquí
-        // Puedes usar axios o vue-resource para hacer una solicitud al servidor de Node.js y MongoDB para verificar las credenciales del usuario.
-        // Por ejemplo:
-        // const response = await this.$http.post('/api/login', { username: this.username, password: this.password });
-        // if (response.data.success) {
-        //   // Usuario autenticado, redirigir a la página principal
-        //   this.$router.push('/dashboard');
-        // } else {
-        //   // Error de inicio de sesión, mostrar mensaje de error
-        //   alert('Inicio de sesión fallido. Por favor, verifique sus credenciales.');
-        // }
+  import axios from 'axios';
+
+export default {
+  data() {
+    return {
+      username: localStorage.getItem('loggedInUsername'),
+      password: '',
+    userData: {},
+    isPasswordShown: false
+    };
+  },
+  methods: {
+    async login() {
+      try {
+        const response = await axios.post('http://localhost:3333/users/login', {
+  username: this.username,
+  password: this.password
+});
+if (response.status === 200) {
+  localStorage.setItem('loggedInUsername', this.username); // Almacenar el nombre de usuario en el localStorage
+  this.$router.push('/profile'); 
+}
+        
+        console.log('Usuario logueado:', response.data);
+        this.$router.push('/profile'); 
+      } catch (error) {
+        console.error('Error al iniciar sesión:', error);
       }
     }
-  };
+  }
+};
   </script>
   
   <style scoped>
