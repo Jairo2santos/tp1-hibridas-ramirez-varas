@@ -58,7 +58,7 @@
       };
     },
     async created() {
-      // Asumimos que el ID del curso viene en la ruta como un parámetro llamado 'id'
+    
       const courseId = this.$route.params.id;
   
       try {

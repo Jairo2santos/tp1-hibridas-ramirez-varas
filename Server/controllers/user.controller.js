@@ -14,7 +14,7 @@ exports.getAllUsers = async (req, res) => {
 exports.login = async (req, res) => {
   const { username, password } = req.body;
   try {
-    const user = await User.findOne({ username, password }); // Nota: Esto es solo para demostración. Nunca almacenes contraseñas en texto plano en la base de datos.
+    const user = await User.findOne({ username, password }); 
     if (user) {
       res.status(200).json(user);
     } else {
@@ -52,6 +52,26 @@ exports.updateUserProfile = async (req, res) => {
     res.status(200).send('Perfil actualizado con éxito');
   } catch (error) {
     console.error('Error al actualizar el perfil del usuario:', error);
+    res.status(500).send('Error interno del servidor');
+  }
+};
+exports.register = async (req, res) => {
+  const { username, email, password } = req.body;
+  try {
+    // Verificar si el usuario ya existe
+    const existingUser = await User.findOne({ username });
+    if (existingUser) {
+      return res.status(400).send('El nombre de usuario ya está en uso');
+    }
+    const newUser = new User({
+      username,
+      email,
+      password, 
+    });
+    await newUser.save();
+    res.status(201).send('Usuario creado exitosamente');
+  } catch (error) {
+    console.error('Error al registrar el usuario:', error);
     res.status(500).send('Error interno del servidor');
   }
 };

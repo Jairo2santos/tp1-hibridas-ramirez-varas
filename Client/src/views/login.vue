@@ -24,6 +24,8 @@
         </div>
         <p>usuario: user pass: 12345</p>
         <button type="submit">Ingresar</button>
+
+        <p class="mb-3">¿No tienes una cuenta? <router-link to="/signup">Regístrate</router-link></p>
       </form>
     </div>
   </template>

@@ -17,7 +17,7 @@ const Course = mongoose.model('course', CourseSchema, 'cursos_UTN');
 
 
 module.exports = Course;
-// Dentro de course.models.js
+
 
 
  
