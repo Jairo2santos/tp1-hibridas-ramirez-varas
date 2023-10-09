@@ -8,7 +8,7 @@ router.get('/', coursesController.getAllCourses);
 router.get('/search', coursesController.searchCourses);
 
 router.put('/:id/title', coursesController.updateCourseTitle);
-// Dentro de courses.js
+// Dentro de courses.jss
 
 router.get('/:id', coursesController.getSingleCourse);
 
