@@ -14,7 +14,7 @@ exports.getAllUsers = async (req, res) => {
 exports.login = async (req, res) => {
   const { username, password } = req.body;
   try {
-    const user = await User.findOne({ username, password }); 
+    const user = await User.findOne({ username, password });
     if (user) {
       res.status(200).json(user);
     } else {
@@ -56,7 +56,7 @@ exports.updateUserProfile = async (req, res) => {
   }
 };
 exports.register = async (req, res) => {
-  const { username, email, password } = req.body;
+  const { username, email, password, address, profilePicture } = req.body;
   try {
     // Verificar si el usuario ya existe
     const existingUser = await User.findOne({ username });
@@ -67,6 +67,9 @@ exports.register = async (req, res) => {
       username,
       email,
       password, 
+      address,           
+      profilePicture 
+
     });
     await newUser.save();
     res.status(201).send('Usuario creado exitosamente');
