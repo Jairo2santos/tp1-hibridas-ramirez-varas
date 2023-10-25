@@ -1,5 +1,3 @@
-
-
 <template>
   <a :href="'/curso/' + course._id" class="block bg-white shadow-md mt-2 min-w-max rounded-lg p-4 hover:shadow-lg transition-shadow">
     
@@ -21,6 +19,7 @@
         </div>
         <CategoriaBadge :categoria="course.category"/>
         <div class="mt-2 text-sm text-gray-400">{{ course.startDate }}</div>
+       
 
       </div>
     </div>
@@ -28,7 +27,7 @@
 </template>
 
 <script>
-import CategoriaBadge from './categoriaTag.vue'; // Asegúrate de proporcionar la ruta correcta
+import CategoriaBadge from './CategoriaTag.vue'; // Asegúrate de proporcionar la ruta correcta
 
 
 export default {
@@ -41,8 +40,11 @@ export default {
       type: Object,
       required: true
     }
+  },
+  methods: {
+    editTitle() {
+      this.$router.push(`/editar-titulo/${this.course._id}`);
+    }
   }
 }
-
-
 </script>

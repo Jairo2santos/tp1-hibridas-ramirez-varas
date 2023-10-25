@@ -1,5 +1,10 @@
 <!-- Cursos.vue -->
 <template>
+  <Portada 
+    
+  :totalCourses="courses.length"
+      
+    />
   <div class="flex container mx-auto p-4">
     <!-- Sidebar a la izquierda -->
     <div>
@@ -67,7 +72,7 @@ export default {
     },
     async loadCategories() {
       try {
-        const response = await axios.get(`http://localhost:3000/categorias`); // Ajusta la URL si es necesario.
+        const response = await axios.get(`http://localhost:3333/categorias`); // Ajusta la URL si es necesario.
         this.categories = response.data;
       } catch (error) {
         console.error("Error al obtener las categorías:", error);
@@ -77,7 +82,7 @@ export default {
       const filterQueryParam = filterType ? `&filter=${filterType}` : "";
       try {
         const response = await axios.get(
-          `http://localhost:3000/cursos?page=${page}${filterQueryParam}`
+          `http://localhost:3333/cursos?page=${page}${filterQueryParam}`
         );
         this.courses = response.data.courses;
         this.totalPages = response.data.totalPages;
@@ -101,7 +106,7 @@ export default {
       console.log("Categorías recibidas en Cursos.vue:", selectedCategories);
 
       // Construcción de la URL
-      const url = `http://localhost:3000/cursos?categories=${selectedCategories.join(
+      const url = `http://localhost:3333/cursos?categories=${selectedCategories.join(
         ","
       )}`;
       console.log("URL de petición:", url); // Agregamos el log para revisar la URL

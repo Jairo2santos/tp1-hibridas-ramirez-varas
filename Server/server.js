@@ -4,15 +4,21 @@ const cors = require('cors');
 
 const app = express();
 
+// Middlewares
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 // Rutas
 const coursesRoutes = require('./routes/courses.js');
 const categoriesRoutes = require('./routes/categories.js');
+const usersRoutes = require('./routes/users.js');
 
-app.use(cors());
 
-// Montar las rutas en la aplicación
+// Montar las rutas 
 app.use('/cursos', coursesRoutes);
 app.use('/categorias', categoriesRoutes);
+app.use('/users', usersRoutes);
 
 // Conectar con MongoDB
 mongoose.connect('mongodb://localhost:27017/cursosApp', { useNewUrlParser: true, useUnifiedTopology: true });
@@ -23,8 +29,7 @@ app.use((error, req, res, next) => {
   res.status(500).send("Error interno del servidor");
 });
 
-// Iniciar el servidor en el puerto 3000
-app.listen(3000, () => {
-  console.log('Servidor escuchando en el puerto 3000');
+// Iniciar el servidor en el puerto 3333
+app.listen(3333, () => {
+  console.log('Servidor escuchando en el puerto 3333');
 });
-
