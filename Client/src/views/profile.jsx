@@ -1,3 +1,4 @@
+//profile.jsx
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -6,7 +7,20 @@ function Profile() {
   const [userData, setUserData] = useState({});
   const [isPasswordShown, setIsPasswordShown] = useState(false);
   const [editing, setEditing] = useState(false);
+  const [alertMessage, setAlertMessage] = useState('');
+  const [isAlertVisible, setIsAlertVisible] = useState(false);
+  const [alertType, setAlertType] = useState('');
+  const [confirmNewPassword, setConfirmNewPassword] = useState('');
+  const [newPassword, setNewPassword] = useState(''); // Añade esta línea
+
   
+  const showAlert = (message, type) => {
+    setAlertMessage(message);
+    setAlertType(type);
+    setIsAlertVisible(true);
+    setTimeout(() => setIsAlertVisible(false), 5000);
+  };
+
 
   const togglePasswordVisibility = () => {
     setIsPasswordShown(!isPasswordShown);
@@ -22,14 +36,29 @@ function Profile() {
   };
 
   const saveProfile = async () => {
+    if (newPassword && newPassword !== confirmNewPassword) {
+      showAlert('Las contraseñas no coinciden.');
+      return;
+    }
+
     try {
-      await axios.put(`http://localhost:3333/users/profile/${userData._id}`, userData);
-      console.log('Perfil actualizado exitosamente');
+      const updatedData = {
+        username: userData.username,
+        email: userData.email,
+        address: userData.address,
+        ...(newPassword && { password: newPassword }) // Solo incluye la contraseña si ha sido ingresada
+      };
+      await axios.put(`http://localhost:3333/users/profile/${userData._id}`, updatedData);
+      showAlert('Perfil actualizado exitosamente', 'success');
       setEditing(false);
+      setNewPassword(''); // Limpia los campos de contraseña
+      setConfirmNewPassword('');
+     
     } catch (error) {
-      console.error('Error al actualizar perfil:', error);
+      showAlert('Error al actualizar perfil');
     }
   };
+
 
   useEffect(() => {
     fetchUserProfile();
@@ -37,6 +66,11 @@ function Profile() {
 
   return (
     <div className="profile-card-container flex justify-center items-center h-screen bg-gray-200">
+    {isAlertVisible && (
+      <div className={`absolute top-0 left-0 right-0 bg-${alertType === 'success' ? 'green' : 'red'}-200 text-${alertType === 'success' ? 'green' : 'red'}-800 p-3 rounded-md text-center`}>
+        {alertMessage}
+      </div>
+    )}
       <div className="profile-card bg-white p-6 rounded-lg shadow-lg max-w-xl">
         <img
           src={userData.profilePicture || 'ruta/a/imagen/placeholder.png'}
@@ -90,20 +124,24 @@ function Profile() {
                 className="block w-full border p-2 rounded mb-3"
               />
 
-              <label className="mb-3">Contraseña</label>
-              <div className="relative">
-                <input
-                  type={isPasswordShown ? 'text' : 'password'}
-                  value={userData.password}
-                  onChange={(e) => setUserData({ ...userData, password: e.target.value })}
-                  placeholder="Contraseña"
-                  className="block w-full border p-2 rounded pr-10 mb-3"
-                />
-                <button onClick={togglePasswordVisibility} className="absolute inset-y-0 right-2 text-blue-500">
-                  {isPasswordShown ? 'Ocultar' : 'Ver'}
-                </button>
-              </div>
-            </div>
+<label className="mb-3">Nueva Contraseña</label>
+        <input
+          type="password"
+          placeholder="Nueva Contraseña"
+          value={newPassword} // Usa el valor de newPassword aquí
+          onChange={(e) => setNewPassword(e.target.value)}
+          className="block w-full border p-2 rounded mb-3"
+        />
+
+        <label className="mb-3">Confirmar Nueva Contraseña</label>
+        <input
+          type="password"
+          placeholder="Confirmar Nueva Contraseña"
+          value={confirmNewPassword} // Usa el valor de confirmNewPassword aquí
+          onChange={(e) => setConfirmNewPassword(e.target.value)}
+          className="block w-full border p-2 rounded mb-3"
+        />
+      </div>
           )}
 
           {/* Botones */}

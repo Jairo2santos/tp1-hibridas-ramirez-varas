@@ -2,6 +2,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 
+
 function EditarTitulo() {
   const [newTitle, setNewTitle] = useState('');
   const [message, setMessage] = useState('');

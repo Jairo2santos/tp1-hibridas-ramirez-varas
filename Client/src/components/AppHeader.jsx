@@ -1,3 +1,4 @@
+//AppHeader.jsx
 import  { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import logo from '../assets/logo-curseek.png'; // Asegúrate de que la ruta al logo es correcta

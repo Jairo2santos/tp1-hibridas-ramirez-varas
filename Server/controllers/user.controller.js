@@ -1,4 +1,7 @@
 const User = require('../models/user.models');
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
+
 
 exports.getAllUsers = async (req, res) => {
     try {
@@ -13,12 +16,13 @@ exports.getAllUsers = async (req, res) => {
 
 exports.login = async (req, res) => {
   const { username, password } = req.body;
+
   try {
-    const user = await User.findOne({ username, password });
-    if (user) {
+    const user = await User.findOne({ username });
+    if (user && await bcrypt.compare(password, user.password)) {
       res.status(200).json(user);
     } else {
-      res.status(400).send('Usuario o contraseña incorrectos');
+      res.status(401).send('Usuario o contraseña incorrectos');
     }
   } catch (error) {
     console.error('Error al iniciar sesión:', error);
@@ -46,31 +50,35 @@ exports.getUserProfile = async (req, res) => {
 
 exports.updateUserProfile = async (req, res) => {
   const { id } = req.params;
-  const updatedData = req.body;
+  let updatedData = req.body;
+
+  // Hashear la nueva contraseña si se ha proporcionado
+  if (updatedData.password) {
+    updatedData.password = await bcrypt.hash(updatedData.password, saltRounds);
+  }
+
   try {
-    await User.findByIdAndUpdate(id, updatedData);
-    res.status(200).send('Perfil actualizado con éxito');
+    // Actualizar el documento del usuario en la base de datos
+    const user = await User.findByIdAndUpdate(id, updatedData, { new: true });
+    // No devolver la contraseña hasheada en la respuesta
+    user.password = undefined;
+    res.status(200).json(user);
   } catch (error) {
-    console.error('Error al actualizar el perfil del usuario:', error);
-    res.status(500).send('Error interno del servidor');
+    res.status(500).send('Error al actualizar el perfil');
   }
 };
+
 exports.register = async (req, res) => {
-  const { username, email, password, address, profilePicture } = req.body;
   try {
-    // Verificar si el usuario ya existe
+    const { username, email, password, address, profilePicture } = req.body;
+    // Verifica si el usuario ya existe
     const existingUser = await User.findOne({ username });
     if (existingUser) {
       return res.status(400).send('El nombre de usuario ya está en uso');
     }
-    const newUser = new User({
-      username,
-      email,
-      password, 
-      address,           
-      profilePicture 
 
-    });
+    // Más console.log para depuración aquí si es necesario
+    const newUser = new User({ username, email, password, address, profilePicture });
     await newUser.save();
     res.status(201).send('Usuario creado exitosamente');
   } catch (error) {

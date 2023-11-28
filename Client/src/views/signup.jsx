@@ -1,24 +1,69 @@
 import { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'; // Importa useNavigate
+
 
 function Signup() {
   const [username, setUsername] = useState('');
+
+  const navigate = useNavigate(); // Hook para la navegación
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [address, setAddress] = useState('');
   const [profilePicture, setProfilePicture] = useState('');
   const [passwordsDoNotMatch, setPasswordsDoNotMatch] = useState(false);
+  const [alertMessage, setAlertMessage] = useState('');
+const [isAlertVisible, setIsAlertVisible] = useState(false);
+const [alertType, setAlertType] = useState(''); // 'success', 'error', 'warning'
 
-  const registerUser = (event) => {
-    event.preventDefault();
-    // Lógica de registro de usuario
-  };
+const registerUser = async (event) => {
+  event.preventDefault();
+  if (password !== confirmPassword) {
+    showAlert('Las contraseñas no coinciden.', 'error');
+    return;
+  }
 
+  try {
+    const response = await axios.post('http://localhost:3333/users/register', {
+      username, email, password, address, profilePicture
+    });
+    showAlert('Registro exitoso. Redirigiendo...', 'success');
+    setTimeout(() => navigate('/login'), 4000); 
+    // Redirige al usuario o maneja la respuesta como prefieras
+  } catch (error) {
+    if (error.response && error.response.status === 400) {
+      showAlert('El nombre de usuario o email ya está en uso.', 'warning');
+    } else {
+      showAlert('Error al registrar el usuario. Inténtalo de nuevo.', 'error');
+    }
+  }
+};
+
+const showAlert = (message, type) => {
+  setAlertMessage(message);
+  setAlertType(type);
+  setIsAlertVisible(true);
+  setTimeout(() => setIsAlertVisible(false), 5000); // Oculta el mensaje después de 5 segundos
+};
+
+
+const Alert = ({ message, type, isVisible }) => {
+  if (!isVisible) return null;
+  const bgColor = type === 'success' ? 'bg-green-200' : type === 'error' ? 'bg-red-200' : 'bg-yellow-200';
+  const textColor = type === 'success' ? 'text-green-800' : type === 'error' ? 'text-red-800' : 'text-yellow-800';
+  return (
+    <div className={`${bgColor} ${textColor} p-3 rounded-md mb-4`}>
+      {message}
+    </div>
+  );
+};
   return (
     <div className="flex justify-center items-center h-screen bg-gray-200">
       <form className="bg-white p-6 rounded-lg shadow-lg max-w-screen-md w-full" onSubmit={registerUser}>
+      <Alert message={alertMessage} type={alertType} isVisible={isAlertVisible} />
+
         <h2 className="text-xl font-bold mb-4 text-center">Regístrate</h2>
 
         <div className="mb-4">
