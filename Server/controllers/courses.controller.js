@@ -33,7 +33,8 @@ exports.getSingleCourse = async (req, res) => {
 
 
 exports.getAllCourses = async (req, res) => {
-    const categoria = req.query.categories;
+    const categoria = req.query.category;
+
     const filterType = req.query.filter;
     const page = Number(req.query.page) || 1; 
     const limit = 6; 
