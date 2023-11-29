@@ -20,24 +20,24 @@ function AppHeader() {
   };
 
   return (
-    <div className="bg-white shadow-md">
+    <div className="bg-white border-b border-gray-200">
       <div className="container mx-auto px-4 py-2">
         <div className="flex items-center justify-between">
-          <div className="flex items-center text-xl font-semibold text-purple-900">
+          <div className="flex items-center text-xl font-semibold text-indigo-900">
             <Link to="/">
               <img src={logo} alt="logo curseek" width="220" />
             </Link>
-            <Link to="/cursos" className="ml-4 hover:bg-purple-200 px-3 py-1 rounded transition text-lg">Cursos</Link>
+            <Link to="/cursos" className="ml-4 hover:bg-indigo-200 px-3 py-1 rounded transition text-lg">Cursos</Link>
           </div>
           <nav className="space-x-4">
             {loggedInUsername ? (
               <>
-                <Link to="/profile" className="hover:bg-purple-200 px-3 py-1 rounded transition text-lg font-bold">Mi Perfil</Link>
-                <span className="mr-2">{loggedInUsername}</span>
-                <button onClick={logout} className="hover:bg-red-200 text-red-700 px-3 py-1 rounded transition text-lg font-bold">Desconectar</button>
+                <Link to="/profile" className="hover:bg-indigo-200 px-3 py-1 rounded transition text-lg font-bold">Mi Perfil</Link>
+                {/* <span className="mr-2">{loggedInUsername}</span> */}
+                <button onClick={logout} className="hover:bg-red-200 text-red-700 px-3 py-1 rounded transition text-lg font-bold">Logout</button>
               </>
             ) : (
-              <Link to="/login" className="hover:bg-purple-200 px-3 py-1 rounded transition text-lg font-bold">Login</Link>
+              <Link to="/login" className="hover:bg-indigo-200 px-3 py-1 rounded transition text-lg font-bold">Login</Link>
             )}
           </nav>
         </div>

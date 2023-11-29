@@ -23,9 +23,10 @@ function EditarTitulo() {
     }
   };
 
-  return (
-    <div className="flex justify-center items-center min-h-screen">
-      <div className="w-1/2 bg-white p-6 rounded shadow">
+  return (      
+    <div className="flex flex-col items-center min-h-screen">
+      <h1 className="text-3xl font-bold mt-8">Editar Título de la Tarjeta</h1>
+      <div className="w-1/2 bg-white p-6 rounded shadow mt-4">
         <input
           value={newTitle}
           onChange={(e) => setNewTitle(e.target.value)}

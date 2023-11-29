@@ -1,6 +1,6 @@
-import{ useState } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
-import CardCurso from '../components/CardCurso'; 
+import CardCurso from '../components/CardCurso';
 
 function Home() {
   const [query, setQuery] = useState('');
@@ -17,24 +17,25 @@ function Home() {
   };
 
   return (
-    
     <div className="p-4 bg-gray-50 min-h-screen">
-      <h1 className="text-center">Curseek: Buscador de Cursos</h1>
-      {/* Campo de búsqueda */}
-      <div className="max-w-lg mx-auto">
-        <form onSubmit={search} className="flex items-center border rounded-lg overflow-hidden">
-          <input 
-            value={query} 
+      <h1 className="text-center text-2xl md:text-3xl lg:text-3xl font-semibold py-12">CurSeek Buscador de Cursos</h1>
+
+      <div className="max-w-lg mx-auto mt-4">
+        <form onSubmit={search} className="flex flex-col md:flex-row items-stretch md:items-center border rounded-lg overflow-hidden shadow-lg">
+          <input
+            value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Buscar cursos..." 
-            className="p-2 flex-grow outline-none"
+            placeholder="Buscar cursos..."
+            className="p-3 flex-grow outline-none rounded-xl focus:outline-none md:rounded-none md:rounded-l-xl"
           />
-          <button type="submit" className="px-4 bg-blue-600 text-white">Buscar</button>
+          <button type="submit" className="px-4 py-2 bg-blue-600 text-white rounded-lg md:rounded-none md:rounded-r-xl mt-2 md:mt-0">
+            Buscar
+          </button>
         </form>
       </div>
 
       {/* Resultados */}
-      <div className="mt-6">
+      <div className="mt-6 md:px-4 lg:px-40">
         {courses.map((course) => (
           <CardCurso key={course._id} course={course} />
         ))}

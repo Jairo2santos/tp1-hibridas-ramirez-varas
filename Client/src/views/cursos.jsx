@@ -1,19 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import CardCurso from '../components/CardCurso'; // Asegúrate de convertir CardCurso.vue a CardCurso.jsx
-import Paginacion from '../components/Paginacion'; // Asegúrate de convertir Paginacion.vue a Paginacion.jsx
-import Portada from '../components/Portada'; // Asegúrate de convertir Portada.vue a Portada.jsx
-import Sidebar from '../components/Sidebar'; // Asegúrate de convertir Sidebar.vue a Sidebar.jsx
-//import Filtros from '../components/Filtros'; // Asegúrate de convertir Filtros.vue a Filtros.jsx
+import CardCurso from '../components/CardCurso';
+import Paginacion from '../components/Paginacion';
+import Portada from '../components/Portada';
+import Sidebar from '../components/Sidebar';
 
 function Cursos() {
   const [courses, setCourses] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const [totalCourses, setTotalCourses] = useState(0);
   const [selectedCategory, setSelectedCategory] = useState('');
-  const [categories, setCategories] = useState([]);  // Añade este estado
-
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     loadCursos(currentPage);
@@ -25,7 +22,7 @@ function Cursos() {
       const response = await axios.get(`http://localhost:3333/categorias`);
       setCategories(response.data);
     } catch (error) {
-      //console.error("Error al obtener las categorías:", error);
+      console.error("Error al obtener las categorías:", error);
     }
   };
 
@@ -33,12 +30,10 @@ function Cursos() {
     const categoryQueryParam = selectedCategory ? `&category=${encodeURIComponent(selectedCategory)}` : "";
     try {
       const response = await axios.get(`http://localhost:3333/cursos?page=${page}${categoryQueryParam}`);
-      console.log("Respuesta de la API:", response.data);
-  
+
       if (response.data && Array.isArray(response.data.cursos)) {
-        setCourses(response.data.cursos); 
+        setCourses(response.data.cursos);
         setTotalPages(response.data.totalPages);
-        setTotalCourses(response.data.totalCourses);
       } else {
         // Manejar cuando no hay cursos o el formato es incorrecto
         setCourses([]);
@@ -47,37 +42,32 @@ function Cursos() {
       console.error("Error al obtener los cursos:", error);
     }
   };
-  
 
   const handleCategorySelect = (category) => {
     setSelectedCategory(category);
   };
-  
+
   const handlePageChange = (newPage) => {
     setCurrentPage(newPage);
   };
-  
+
   useEffect(() => {
     // Siempre carga la página 1 cuando cambia la categoría
     loadCursos(1);
   }, [selectedCategory]);
-  
-  return (
-    <div>
-      <Portada totalCourses={courses.length} /> 
 
-      <div className="flex container mx-auto p-4">
-        <div>
+  return (
+    <div className='px-4 md:px-40 bg-white'>
+      <Portada totalCourses={courses.length} />
+
+      <div className="flex flex-col md:flex-row container mx-auto">
         <Sidebar
-        categories={categories}
-        selectedCategory={selectedCategory}
-        onCategorySelect={handleCategorySelect}
-      />       
-       </div>
-        <div className="flex flex-col w-full ml-4">
-          <div>
-            {/* <Filtros onFilterChange={handleFilterChange} /> */}
-          </div>
+          categories={categories}
+          selectedCategory={selectedCategory}
+          onCategorySelect={handleCategorySelect}
+          className="md:w-1/4"
+        />
+        <div className="flex flex-col w-full ml-0 md:ml-4">
           <div>
             {courses.map((course) => (
               <div key={course._id} className="mb-4 min-w-max">

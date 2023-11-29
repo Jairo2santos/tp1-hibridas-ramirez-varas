@@ -1,13 +1,14 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './views/Home';
-import Cursos from './views/Cursos';
+import Home from './views/home';
+import Cursos from './views/cursos';
 import Login from './views/Login';
-import CursosCategory from './views/CursosCategory';
+import CursosCategory from './views/cursosCategory';
 import EditarTitulo from "./views/EditarTitulo";
 import DetalleCurso from "./views/DetalleCurso";
 import Profile from  "./views/Profile";
 import Signup from  "./views/signup";
-import AppHeader from './components/AppHeader'; // Importa el componente AppHeader
+import AppHeader from './components/AppHeader';
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         {/* Asegúrate de definir el resto de las rutas necesarias aquí */}
       </Routes>
+      <Footer/>
     </Router>
   );
 }

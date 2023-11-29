@@ -92,13 +92,14 @@ function Profile() {
   }, []);
 
   return (
-    <div className="profile-card-container flex justify-center items-center h-screen bg-gray-200">
+    <div className="profile-card-container flex justify-center items-center h-screen bg-white">
     {isAlertVisible && (
       <div className={`absolute top-0 left-0 right-0 bg-${alertType === 'success' ? 'green' : 'red'}-200 text-${alertType === 'success' ? 'green' : 'red'}-800 p-3 rounded-md text-center`}>
         {alertMessage}
       </div>
     )}
       <div className="profile-card bg-white p-6 rounded-lg shadow-lg max-w-xl">
+      <h1 className="text-xl font-bold mb-4 text-center">Mi Perfil</h1>
         <img
           src={userData.profilePicture || 'ruta/a/imagen/placeholder.png'}
           alt="Foto de perfil"
