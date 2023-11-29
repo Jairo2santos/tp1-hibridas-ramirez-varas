@@ -46,7 +46,7 @@ function Login() {
           {alertMessage}
         </div>
       )}
-    <form className="bg-gray-100 p-6 rounded-md shadow-md" onSubmit={login}>
+    <form className="bg-white p-6 rounded-md shadow-md" onSubmit={login}>
       <h1 className="text-2xl font-semibold mb-4">Iniciar Sesión</h1>
       <div className="mb-4">
         <label htmlFor="username" className="block text-sm font-medium text-gray-600">
