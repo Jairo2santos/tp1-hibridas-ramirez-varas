@@ -1,7 +1,5 @@
-
 const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
-const saltRounds = 10;
+const hashPassword = require('../middleware/user.middleware');
 
 const userSchema = new mongoose.Schema({
   username: { type: String, unique: true, required: true },
@@ -12,14 +10,5 @@ const userSchema = new mongoose.Schema({
   // Puedes añadir más campos según sea necesario
 });
 
-// Middleware de Mongoose que se ejecuta antes de guardar ('save') un usuario
-userSchema.pre('save', async function(next) {
-  // Solo hashea la contraseña si ha sido modificada (o es nueva)
-  if (this.isModified('password')) {
-    // Hashea la contraseña y sustitúyela
-    this.password = await bcrypt.hash(this.password, saltRounds);
-  }
-  next();
-});
-
+userSchema.pre('save', hashPassword);
 module.exports = mongoose.model('User', userSchema);
