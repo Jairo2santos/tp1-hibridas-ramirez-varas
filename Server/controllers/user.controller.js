@@ -1,4 +1,5 @@
 const userService = require('../services/user.services');
+const jwt = require('jsonwebtoken');
 
 exports.getAllUsers = async (req, res) => {
     try {
@@ -15,7 +16,13 @@ exports.login = async (req, res) => {
   try {
     const user = await userService.authenticateUser(username, password);
     if (user) {
-      res.status(200).json(user);
+      let role = "usuario"; 
+      if (user.role === "admin") {
+        role = "admin";
+      }
+
+      const token = jwt.sign({ userId: user._id, role }, process.env.JWT_SECRET, { expiresIn: '1h' });
+      res.status(200).json({ token, role }); 
     } else {
       res.status(401).send('Usuario o contraseña incorrectos');
     }
@@ -24,6 +31,7 @@ exports.login = async (req, res) => {
     res.status(500).send('Error interno del servidor');
   }
 };
+
 
 exports.getUserProfile = async (req, res) => {
   const { username } = req.params;

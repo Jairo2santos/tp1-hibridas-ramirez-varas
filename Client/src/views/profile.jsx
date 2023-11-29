@@ -12,8 +12,9 @@ function Profile() {
   const [alertType, setAlertType] = useState('');
   const [confirmNewPassword, setConfirmNewPassword] = useState('');
   const [newPassword, setNewPassword] = useState(''); // Añade esta línea
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [allUsers, setAllUsers] = useState([]);
 
-  
   const showAlert = (message, type) => {
     setAlertMessage(message);
     setAlertType(type);
@@ -58,10 +59,36 @@ function Profile() {
       showAlert('Error al actualizar perfil');
     }
   };
-
+  const fetchAllUsers = async () => {
+    console.log("Fetching all users..."); // Agrega esta línea para verificar si se ejecuta la función
+    try {
+      const token = localStorage.getItem('token');
+      const response = await axios.get(`http://localhost:3333/users/admin/users`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+      setAllUsers(response.data);
+      console.log("Respuesta del servidor:", response.data); // Agrega esta línea para verificar la respuesta
+     
+    } catch (error) {
+      console.error("Error al obtener todos los usuarios:", error);
+    }
+  };
 
   useEffect(() => {
     fetchUserProfile();
+  }, []);
+
+  useEffect(() => {
+    // Aquí verifica si el usuario es administrador
+    const userRole = localStorage.getItem('userRole'); // Asegúrate de que el rol se guarda en localStorage cuando el usuario inicia sesión
+    if (userRole === 'admin') {
+      setIsAdmin(true);
+      console.log("Fetching all users from useEffect..."); // Agrega esta línea para verificar si se ejecuta el useEffect
+
+      fetchAllUsers();
+    }
   }, []);
 
   return (
@@ -99,6 +126,30 @@ function Profile() {
               </>
             )}
           </div>
+
+          {isAdmin && (
+        <div className="admin-section">
+          <h2 className="text-2xl font-bold mb-4">Usuarios Registrados</h2>
+          <table className="min-w-full">
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Email</th>
+              </tr>
+            </thead>
+            <tbody>
+              {allUsers.map((user) => (
+                <tr key={user._id}>
+                  <td>{user.username}</td>
+                  <td>{user.email}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+
+
 
           {/* Campos editables */}
           {editing && (
@@ -171,9 +222,4 @@ function Profile() {
 export default Profile;
 
 
-{/* <style scoped>
-.profile-card {
-  min-width: 600px;
-  min-height: 500px;
-}
-</style> */}
+

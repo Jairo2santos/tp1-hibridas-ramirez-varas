@@ -17,12 +17,15 @@ function Login() {
 
   const login = async (event) => {
     event.preventDefault();
-
+  
     try {
       const response = await axios.post('http://localhost:3333/users/login', { username, password });
-
+  
       if (response.status === 200) {
+        localStorage.setItem('token', response.data.token); // Almacena el token en LocalStorage
         localStorage.setItem('loggedInUsername', username);
+        localStorage.setItem('userRole', response.data.role); // Almacena el rol en LocalStorage
+
         navigate('/profile');
       }
     } catch (error) {
@@ -33,6 +36,8 @@ function Login() {
       }
     }
   };
+  
+  
 
   return (
     <div className="flex justify-center items-center h-screen">

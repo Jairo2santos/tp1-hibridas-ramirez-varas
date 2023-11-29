@@ -6,7 +6,12 @@ const userSchema = new mongoose.Schema({
   email: { type: String, unique: true, required: true },
   password: { type: String, required: true },
   profilePicture: String,
-  address: String
+  address: String,
+  role: { 
+    type: String, 
+    enum: ['user', 'admin'], // Define los roles permitidos
+    default: 'user' // El rol por defecto es 'user'
+  },
   // Puedes añadir más campos según sea necesario
 });
 
