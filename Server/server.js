@@ -14,12 +14,13 @@ app.use(express.urlencoded({ extended: true }));
 const coursesRoutes = require('./routes/courses.js');
 const categoriesRoutes = require('./routes/categories.js');
 const usersRoutes = require('./routes/users.js');
-
+const blogRoutes = require('./routes/blog.js');
 
 // Montar las rutas 
 app.use('/cursos', coursesRoutes);
 app.use('/categorias', categoriesRoutes);
 app.use('/users', usersRoutes);
+app.use('/blogs', blogRoutes);
 
 // Conectar con MongoDB
 mongoose.connect('mongodb://localhost:27017/cursosApp', { useNewUrlParser: true, useUnifiedTopology: true });

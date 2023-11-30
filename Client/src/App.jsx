@@ -9,6 +9,9 @@ import Profile from  "./views/Profile";
 import Signup from  "./views/signup";
 import AppHeader from './components/AppHeader';
 import Footer from './components/Footer';
+import BlogList from './views/BlogList'; // Importa tu componente BlogList
+import BlogDetail from './views/BlogDetail'
+import CreateBlog from './views/createBlog'
 
 function App() {
   return (
@@ -17,6 +20,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/cursos" element={<Cursos />} />
+        <Route path="/blogs" element={<BlogList />} />
+        <Route path="/blogs/:id" element={<BlogDetail />} />
+        <Route path="/createBlog" element={<CreateBlog />} />
         <Route path="/login" element={<Login />} />
         <Route path="/categoria/:categoria" element={<CursosCategory />} />
         <Route path="/editar-titulo/:courseId" element={<EditarTitulo />} />

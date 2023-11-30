@@ -30,6 +30,8 @@ function AppHeader() {
             <Link to="/cursos" className="ml-4 hover:bg-indigo-200 px-3 py-1 rounded transition text-lg">Cursos</Link>
           </div>
           <nav className="space-x-4">
+          <Link to="/blogs" className="hover:bg-indigo-200 px-3 py-1 rounded transition text-lg">Blogs</Link>
+
             {loggedInUsername ? (
               <>
                 <Link to="/profile" className="hover:bg-indigo-200 px-3 py-1 rounded transition text-lg font-bold">Mi Perfil</Link>
@@ -39,6 +41,7 @@ function AppHeader() {
             ) : (
               <Link to="/login" className="hover:bg-indigo-200 px-3 py-1 rounded transition text-lg font-bold">Login</Link>
             )}
+
           </nav>
         </div>
       </div>
