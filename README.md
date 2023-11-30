@@ -8,6 +8,16 @@ Instala las dependencias:
 
 npm install
 
+luego en la consola cd client y alli ejecutas npm start y debe iniciar todo. 
+
+MongoDB:
+nombre: cursosApp
+coleccion cursos: cursos_UTN
+coleccion usuarios: users
+coleccion articulos: blogs
+
+-------
+
 Para ejecutar el cliente en modo desarrollo:
 
 npm run dev
@@ -21,9 +31,5 @@ npm install
 
 Nota: Asegúrate de tener configurada la conexión a tu base de datos para eso corre mongo compass y agarra la direccion que te dan y la pones en la ruta de de servidor.js y el nombre de la base de datos ponle cursosApp asi te corre como a mi
 
-node servidor.js corres el server http://localhost:3000
+node servidor.js corres el server.
 
-MongoDB:
-nombre: cursosApp
-coleccion cursos: cursos_UTN
-coleccion usuarios: users
