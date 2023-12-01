@@ -1,6 +1,6 @@
-import express from 'express';
+const express = require('express');
 const router = express.Router();
-import blogController from '../controllers/blog.controller';
+const blogController = require('../controllers/blog.controller');
 
 // Obtener todos los blogs
 router.get('/', blogController.getAllBlogs);

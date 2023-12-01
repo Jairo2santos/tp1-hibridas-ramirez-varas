@@ -1,5 +1,5 @@
-import Comment from '../models/comments.models'; // Asegúrate de usar la ruta correcta al modelo de comentarios
-import User from '../models/user.models'; 
+const Comment = require('../models/comments.models'); // Asegúrate de usar la ruta correcta al modelo de comentarios
+const User = require('../models/user.models'); 
 
 // Agregar un nuevo comentario
 const addComment = async (req, res) => {

@@ -1,7 +1,6 @@
-// admin.middleware.js
-import jwt from 'jsonwebtoken';
-import User from '../models/user.models';
-
+//admin.middleware.js
+const jwt = require('jsonwebtoken');
+const User = require('../models/user.models');
 
 const verifyToken = async (req, res, next) => {
     const token = req.headers.authorization?.split(' ')[1]; // Obtiene el token del encabezado

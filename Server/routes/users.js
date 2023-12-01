@@ -1,8 +1,7 @@
-// Importaciones con la sintaxis de import
-import express from 'express';
+const express = require('express');
 const router = express.Router();
-import { verifyToken, requireAdmin } from '../middleware/admin.middleware';
-import userController from '../controllers/user.controller';
+const { verifyToken, requireAdmin } = require('../middleware/admin.middleware');
+const userController = require('../controllers/user.controller');
 
 router.get('/', userController.getAllUsers);  // Aquí es donde defines la ruta GET para /users
 router.post('/login', userController.login);

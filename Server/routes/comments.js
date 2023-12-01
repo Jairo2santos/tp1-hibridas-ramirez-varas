@@ -1,9 +1,8 @@
-// Importaciones con la sintaxis de import
-import express from 'express';
+const express = require('express');
 const router = express.Router();
-import { addComment, deleteComment, getCommentsByCourse } from '../controllers/comments.controller';
-import authenticate from '../middleware/auth.middleware'; // Asegúrate de usar la ruta correcta al middleware
-import { requireAdmin } from '../middleware/admin.middleware'; // Asegúrate de usar la ruta correcta al middleware
+const { addComment, deleteComment, getCommentsByCourse } = require('../controllers/comments.controller');
+const authenticate = require('../middleware/auth.middleware'); // Asegúrate de usar la ruta correcta al middleware
+const { requireAdmin } = require('../middleware/admin.middleware'); // Asegúrate de usar la ruta correcta al middleware
 
 // Ruta para agregar un nuevo comentario (accesible por usuarios autenticados)
 router.post('/', authenticate, addComment);

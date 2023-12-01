@@ -1,5 +1,5 @@
 //comments.models.js
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 
 const commentSchema = new mongoose.Schema({
   contenido: String,

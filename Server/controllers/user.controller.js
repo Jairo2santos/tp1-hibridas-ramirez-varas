@@ -1,5 +1,5 @@
-import userService from '../services/user.services';
-import jwt from 'jsonwebtoken';
+const userService = require('../services/user.services');
+const jwt = require('jsonwebtoken');
 
 exports.getAllUsers = async (req, res) => {
     try {
