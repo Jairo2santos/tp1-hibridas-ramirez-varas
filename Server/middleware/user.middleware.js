@@ -1,4 +1,4 @@
-import bcrypt from 'bcrypt';
+const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
 // Middleware para hashear la contraseña

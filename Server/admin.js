@@ -1,6 +1,6 @@
-import mongoose from 'mongoose';
-import bcrypt from 'bcrypt';
-import User from './models/user.models'; // Asegúrate de reemplazar con la ruta correcta a tu modelo de User
+const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
+const User = require('./models/user.models'); // Asegúrate de reemplazar con la ruta correcta a tu modelo de User
 
 async function createAdminUser() {
     try {

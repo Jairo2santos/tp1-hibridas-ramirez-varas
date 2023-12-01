@@ -1,7 +1,6 @@
-// Después (usando import)
-import express from 'express';
+const express = require('express');
 const router = express.Router();
-import categoriesController from '../controllers/categories.controller.js';
+const categoriesController = require('../controllers/categories.controller.js');
 
 router.get('/', categoriesController.getCategories);
 

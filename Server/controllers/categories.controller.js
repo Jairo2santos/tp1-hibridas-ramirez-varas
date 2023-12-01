@@ -1,5 +1,5 @@
 //categories.controller.js
-import Course from '../models/course.models.js';
+const Course = require('../models/course.models.js');
 
 exports.getCategories = async (req, res) => {
     try {
