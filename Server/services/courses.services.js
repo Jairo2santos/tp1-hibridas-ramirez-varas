@@ -1,7 +1,5 @@
-//courses.services.js
-
-
-const Course = require('../models/course.models');
+// Importación con la sintaxis de import
+import Course from '../models/course.models';
 
 const courseService = {
     updateCourseTitle: async (id, title) => {

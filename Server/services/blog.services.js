@@ -1,4 +1,5 @@
-const Blog = require('../models/blog.model');
+// Importación con la sintaxis de import
+import Blog from '../models/blog.model';
 
 exports.findAllBlogs = async () => {
   try {

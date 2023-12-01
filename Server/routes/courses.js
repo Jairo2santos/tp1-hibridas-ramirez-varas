@@ -1,8 +1,7 @@
-const express = require('express');
+// Importaciones con la sintaxis de import
+import express from 'express';
 const router = express.Router();
-const coursesController = require('../controllers/courses.controller.js');
-
-
+import coursesController from '../controllers/courses.controller.js';
 
 router.get('/', coursesController.getAllCourses);
 router.get('/search', coursesController.searchCourses);

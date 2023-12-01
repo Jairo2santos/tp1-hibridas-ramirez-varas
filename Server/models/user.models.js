@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const hashPassword = require('../middleware/user.middleware');
+import mongoose from 'mongoose';
+import hashPassword from '../middleware/user.middleware';
 
 //user.models.js
 const userSchema = new mongoose.Schema({

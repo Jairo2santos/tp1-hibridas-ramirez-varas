@@ -1,6 +1,7 @@
-const express = require('express');
+// Después (usando import)
+import express from 'express';
 const router = express.Router();
-const categoriesController = require('../controllers/categories.controller.js');
+import categoriesController from '../controllers/categories.controller.js';
 
 router.get('/', categoriesController.getCategories);
 

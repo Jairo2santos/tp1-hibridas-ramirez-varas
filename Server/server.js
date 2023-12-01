@@ -1,8 +1,8 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const cors = require('cors');
-require('dotenv').config();
-
+import express from 'express';
+import mongoose from 'mongoose';
+import cors from 'cors';
+import dotenv from 'dotenv';
+dotenv.config();
 
 const app = express();
 
@@ -12,18 +12,19 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Rutas
-const coursesRoutes = require('./routes/courses.js');
-const categoriesRoutes = require('./routes/categories.js');
-const usersRoutes = require('./routes/users.js');
-const blogRoutes = require('./routes/blog.js');
-const commentsRoutes = require('./routes/comments.js');
+import coursesRoutes from './routes/courses.js';
+import categoriesRoutes from './routes/categories.js';
+import usersRoutes from './routes/users.js';
+import blogRoutes from './routes/blog.js';
+import commentsRoutes from './routes/comments.js';
 
-// Montar las rutas 
+// Montar las rutas
 app.use('/cursos', coursesRoutes);
 app.use('/categorias', categoriesRoutes);
 app.use('/users', usersRoutes);
 app.use('/blogs', blogRoutes);
 app.use('/comentarios', commentsRoutes);
+
 
 // Conectar con MongoDB
 mongoose.connect('mongodb://localhost:27017/cursosApp', { useNewUrlParser: true, useUnifiedTopology: true });

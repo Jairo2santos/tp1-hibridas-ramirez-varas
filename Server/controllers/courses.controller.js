@@ -1,5 +1,4 @@
-
-const courseService = require('../services/courses.services');
+import courseService from '../services/courses.services';
 
 exports.updateCourseTitle = async (req, res) => {
     const { id } = req.params;
