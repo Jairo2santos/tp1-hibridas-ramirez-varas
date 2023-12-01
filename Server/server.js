@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 require('dotenv').config();
 
+
 const app = express();
 
 // Middlewares
@@ -15,12 +16,14 @@ const coursesRoutes = require('./routes/courses.js');
 const categoriesRoutes = require('./routes/categories.js');
 const usersRoutes = require('./routes/users.js');
 const blogRoutes = require('./routes/blog.js');
+const commentsRoutes = require('./routes/comments.js');
 
 // Montar las rutas 
 app.use('/cursos', coursesRoutes);
 app.use('/categorias', categoriesRoutes);
 app.use('/users', usersRoutes);
 app.use('/blogs', blogRoutes);
+app.use('/comentarios', commentsRoutes);
 
 // Conectar con MongoDB
 mongoose.connect('mongodb://localhost:27017/cursosApp', { useNewUrlParser: true, useUnifiedTopology: true });

@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const hashPassword = require('../middleware/user.middleware');
 
+//user.models.js
 const userSchema = new mongoose.Schema({
   username: { type: String, unique: true, required: true },
   email: { type: String, unique: true, required: true },

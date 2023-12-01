@@ -1,0 +1,115 @@
+[{
+  "_id": {
+    "$oid": "6568e8fdaf51abac6cbf8c55"
+  },
+  "contenido": "asdasasd",
+  "usuario": {
+    "$oid": "65665c85db0a64dec9c0a34b"
+  },
+  "curso": {
+    "$oid": "6514e72575a1911f8b105b7c"
+  },
+  "fecha": {
+    "$date": "2023-11-30T19:56:45.696Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6568e918af51abac6cbf8c64"
+  },
+  "contenido": "eterreter",
+  "usuario": {
+    "$oid": "65665c85db0a64dec9c0a34b"
+  },
+  "curso": {
+    "$oid": "6514e72575a1911f8b105b7c"
+  },
+  "fecha": {
+    "$date": "2023-11-30T19:57:12.203Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6568ed10af51abac6cbf8c8e"
+  },
+  "contenido": "nuevo comentarioo de prueba",
+  "usuario": {
+    "$oid": "65665c85db0a64dec9c0a34b"
+  },
+  "curso": {
+    "$oid": "6514e72575a1911f8b105b7d"
+  },
+  "fecha": {
+    "$date": "2023-11-30T20:14:08.784Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6568f68e0cf8d2aae127c8a6"
+  },
+  "contenido": "prueba ratin 4",
+  "usuario": {
+    "$oid": "6568f35d74fa51e223e4d6c2"
+  },
+  "curso": {
+    "$oid": "6514e72575a1911f8b105b7d"
+  },
+  "fecha": {
+    "$date": "2023-11-30T20:54:38.544Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6568f6f60266fa8ef905e6c8"
+  },
+  "contenido": "rating 3",
+  "calificación": 3,
+  "usuario": {
+    "$oid": "6568f35d74fa51e223e4d6c2"
+  },
+  "curso": {
+    "$oid": "6514e72575a1911f8b105b7d"
+  },
+  "fecha": {
+    "$date": "2023-11-30T20:56:22.518Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65691ebafc2953c3c599a537"
+  },
+  "contenido": "locoo",
+  "calificación": 4,
+  "usuario": {
+    "$oid": "6568f35d74fa51e223e4d6c2"
+  },
+  "curso": {
+    "$oid": "6514e72575a1911f8b105b80"
+  },
+  "fecha": {
+    "$date": "2023-11-30T23:46:02.548Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "656920e8fc2953c3c599a554"
+  },
+  "contenido": "Buen cursito ete che",
+  "calificación": 5,
+  "usuario": {
+    "$oid": "6568f35d74fa51e223e4d6c2"
+  },
+  "curso": {
+    "$oid": "6514e72575a1911f8b105b7e"
+  },
+  "fecha": {
+    "$date": "2023-11-30T23:55:20.687Z"
+  },
+  "__v": 0
+}]
