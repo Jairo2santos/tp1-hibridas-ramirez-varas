@@ -1,6 +1,6 @@
 //user.services.js
-const User = require('../models/user.models');
-const bcrypt = require('bcrypt');
+import User from '../models/user.models';
+import bcrypt from 'bcrypt';
 const saltRounds = 10;
 
 const userService = {
