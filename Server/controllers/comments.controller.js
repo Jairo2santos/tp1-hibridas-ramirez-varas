@@ -1,8 +1,7 @@
-const Comment = require('../models/comments.models'); // Asegúrate de usar la ruta correcta al modelo de comentarios
-const User = require('../models/user.models'); 
+import Comment from '../models/comments.models.js'; 
 
-// Agregar un nuevo comentario
-const addComment = async (req, res) => {
+
+export const addComment = async (req, res) => {
     try {
       if (!req.user || !req.user._id) {
         return res.status(401).json({ mensaje: 'No autorizado' });
@@ -33,20 +32,18 @@ const addComment = async (req, res) => {
   };
   
   
-// Eliminar un comentario por su ID
-const deleteComment = async (req, res) => {
+
+export const deleteComment = async (req, res)  => {
   try {
-    const { commentId } = req.params; // Obtén el ID del comentario desde los parámetros de la URL
-    // Verificar si el comentario existe
+    const { commentId } = req.params; 
     const comentario = await Comment.findById(commentId);
     if (!comentario) {
       return res.status(404).json({ mensaje: 'Comentario no encontrado' });
     }
-    // Verificar si el usuario autenticado es el propietario del comentario (o si es un admin u otra lógica de autorización)
     if (comentario.usuario.toString() !== req.user._id.toString() && req.user.role !== 'admin') {
       return res.status(403).json({ mensaje: 'No tienes permiso para eliminar este comentario' });
     }
-    await Comment.findByIdAndDelete(commentId); // Eliminar el comentario
+    await Comment.findByIdAndDelete(commentId); 
     res.json({ mensaje: 'Comentario eliminado con éxito' });
   } catch (error) {
     console.error('Error al eliminar el comentario:', error);
@@ -56,7 +53,7 @@ const deleteComment = async (req, res) => {
 
 // En comments.controller.js o un archivo similar
 
-const getCommentsByCourse = async (req, res) => {
+export const getCommentsByCourse = async (req, res) => {
     try {
       const { cursoId } = req.params;
       const comentarios = await Comment.find({ curso: cursoId })
@@ -68,9 +65,3 @@ const getCommentsByCourse = async (req, res) => {
     }
   };
 
-module.exports = {
-  addComment,
-  deleteComment,
-  getCommentsByCourse
-  // Otros controladores aquí, como obtener comentarios para un curso, etc.
-};

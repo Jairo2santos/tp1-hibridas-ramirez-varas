@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const CourseSchema = new mongoose.Schema({
   title: String,
@@ -16,7 +16,7 @@ const CourseSchema = new mongoose.Schema({
 const Course = mongoose.model('course', CourseSchema, 'cursos_UTN');
 
 
-module.exports = Course;
+export default Course;
 
 
 

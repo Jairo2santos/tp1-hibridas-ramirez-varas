@@ -1,7 +1,7 @@
 //categories.controller.js
-const Course = require('../models/course.models.js');
+import Course from '../models/course.models.js';
 
-exports.getCategories = async (req, res) => {
+export const getCategories = async (req, res)  => {
     try {
         const categorias = await Course.distinct("category");
         res.json(categorias);

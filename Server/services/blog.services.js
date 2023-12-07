@@ -1,6 +1,6 @@
-const Blog = require('../models/blog.model');
+import Blog from '../models/blog.model.js';
 
-exports.findAllBlogs = async () => {
+export const findAllBlogs = async () => {
   try {
     return await Blog.find().sort('-date'); // Ordena los blogs por fecha descendente
   } catch (error) {
@@ -8,7 +8,7 @@ exports.findAllBlogs = async () => {
   }
 };
 
-exports.createBlog = async (blogData) => {
+export const createBlog = async (blogData) => {
   try {
     const newBlog = new Blog(blogData);
     return await newBlog.save();

@@ -1,6 +1,6 @@
 //admin.middleware.js
-const jwt = require('jsonwebtoken');
-const User = require('../models/user.models');
+import jwt from 'jsonwebtoken';
+import User from '../models/user.models.js';
 
 const verifyToken = async (req, res, next) => {
     const token = req.headers.authorization?.split(' ')[1]; // Obtiene el token del encabezado
@@ -16,7 +16,7 @@ const verifyToken = async (req, res, next) => {
     } catch (error) {
       res.status(401).send('Token inválido.');
     }
-  };
+};
 
 const requireAdmin = (req, res, next) => {
     if (req.user && req.user.role === 'admin') {
@@ -24,10 +24,6 @@ const requireAdmin = (req, res, next) => {
     } else {
       res.status(403).send('Acceso denegado. Se requiere rol de administrador.');
     }
-  };
-  
-  module.exports = {
-    verifyToken,
-    requireAdmin
-  };
-  
+};
+
+export { verifyToken, requireAdmin };

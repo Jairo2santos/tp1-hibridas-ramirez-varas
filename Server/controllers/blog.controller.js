@@ -1,6 +1,6 @@
-const Blog = require('../models/blog.models');
+import Blog from '../models/blog.models.js';
 
-exports.getAllBlogs = async (req, res) => {
+export const getAllBlogs = async (req, res) => {
   try {
     const blogs = await Blog.find().sort('-date'); // Ordena los blogs por fecha descendente
     res.status(200).json(blogs);
@@ -9,7 +9,7 @@ exports.getAllBlogs = async (req, res) => {
     res.status(500).send('Error interno del servidor');
   }
 };
-exports.getBlogById = async (req, res) => {
+export const getBlogById = async (req, res)  => {
     const blogId = req.params.blogId;
     try {
       const blog = await Blog.findById(blogId);
@@ -22,7 +22,7 @@ exports.getBlogById = async (req, res) => {
       res.status(500).send('Error interno del servidor');
     }
   };
-  exports.createBlog = async (req, res) => {
+  export const createBlog = async (req, res)=> {
     const { title, content, author, image } = req.body; // Asegúrate de incluir image aquí si estás enviando la imagen en el cuerpo de la solicitud
   
     try {
@@ -36,7 +36,7 @@ exports.getBlogById = async (req, res) => {
   };
 
   
-exports.deleteBlogById = async (req, res) => {
+  export const deleteBlogById = async (req, res)=> {
   const blogId = req.params.blogId;
   
   try {

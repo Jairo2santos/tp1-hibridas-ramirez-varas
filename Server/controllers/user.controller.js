@@ -1,7 +1,8 @@
-const userService = require('../services/user.services');
-const jwt = require('jsonwebtoken');
+import userService from '../services/user.services.js';
+import jwt from 'jsonwebtoken';
 
-exports.getAllUsers = async (req, res) => {
+
+export const getAllUsers = async (req, res)  => {
     try {
         const users = await userService.findAllUsers();
         res.status(200).json(users);
@@ -11,7 +12,7 @@ exports.getAllUsers = async (req, res) => {
     }
 };
 
-exports.login = async (req, res) => {
+export const login = async (req, res) => {
   const { username, password } = req.body;
   try {
     const user = await userService.authenticateUser(username, password);
@@ -33,7 +34,7 @@ exports.login = async (req, res) => {
 };
 
 
-exports.getUserProfile = async (req, res) => {
+export const getUserProfile = async (req, res)  => {
   const { username } = req.params;
   try {
     const user = await userService.getUserProfile(username);
@@ -48,7 +49,7 @@ exports.getUserProfile = async (req, res) => {
   }
 };
 
-exports.updateUserProfile = async (req, res) => {
+export const updateUserProfile = async (req, res) => {
   const { id } = req.params;
   const updatedData = req.body;
 
@@ -66,7 +67,7 @@ exports.updateUserProfile = async (req, res) => {
   }
 };
 
-exports.register = async (req, res) => {
+export  const register = async (req, res) => {
   try {
     const newUser = req.body;
     await userService.registerUser(newUser);

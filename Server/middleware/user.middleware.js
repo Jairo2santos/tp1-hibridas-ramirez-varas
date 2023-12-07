@@ -1,4 +1,4 @@
-const bcrypt = require('bcrypt');
+import bcrypt from 'bcrypt';
 const saltRounds = 10;
 
 // Middleware para hashear la contraseña
@@ -11,4 +11,4 @@ const hashPassword = async function(next) {
   next();
 };
 
-module.exports = hashPassword;
+export default hashPassword;

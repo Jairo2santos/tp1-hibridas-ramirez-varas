@@ -1,7 +1,7 @@
 
-const courseService = require('../services/courses.services');
+import courseService from '../services/courses.services.js';
 
-exports.updateCourseTitle = async (req, res) => {
+export const updateCourseTitle = async (req, res)  => {
     const { id } = req.params;
     const { title } = req.body;
 
@@ -14,7 +14,7 @@ exports.updateCourseTitle = async (req, res) => {
     }
 };
 
-exports.getSingleCourse = async (req, res) => {
+export const getSingleCourse = async (req, res) => {
     const { id } = req.params;
 
     try {
@@ -30,7 +30,7 @@ exports.getSingleCourse = async (req, res) => {
     }
 };
 
-exports.getAllCourses = async (req, res) => {
+export const getAllCourses = async (req, res)=> {
     const { category, page = 1, limit = 6 } = req.query;
 
     try {
@@ -41,7 +41,7 @@ exports.getAllCourses = async (req, res) => {
       res.status(500).send("Error interno del servidor");
     }
   };
-exports.searchCourses = async (req, res) => {
+  export const searchCourses = async (req, res)  => {
     const query = req.query.q;
 
     try {

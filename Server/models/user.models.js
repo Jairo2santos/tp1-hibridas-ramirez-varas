@@ -1,5 +1,6 @@
-const mongoose = require('mongoose');
-const hashPassword = require('../middleware/user.middleware');
+import mongoose from 'mongoose';
+import hashPassword from '../middleware/user.middleware.js';
+
 
 //user.models.js
 const userSchema = new mongoose.Schema({
@@ -17,4 +18,4 @@ const userSchema = new mongoose.Schema({
 });
 
 userSchema.pre('save', hashPassword);
-module.exports = mongoose.model('User', userSchema);
+export default mongoose.model('User', userSchema);

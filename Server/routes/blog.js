@@ -1,15 +1,16 @@
-const express = require('express');
+import express from 'express';
+import { getAllBlogs, getBlogById, deleteBlogById, createBlog } from '../controllers/blog.controller.js';
+
 const router = express.Router();
-const blogController = require('../controllers/blog.controller');
 
 // Obtener todos los blogs
-router.get('/', blogController.getAllBlogs);
+router.get('/', getAllBlogs);
 
 // Obtener un blog por su ID
-router.get('/:blogId', blogController.getBlogById);
-router.delete('/:blogId', blogController.deleteBlogById);
+router.get('/:blogId', getBlogById);
+router.delete('/:blogId', deleteBlogById);
 
 // Crear un nuevo blog sin autenticación
-router.post('/', blogController.createBlog);
+router.post('/', createBlog);
 
-module.exports = router;
+export default router;

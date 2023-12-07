@@ -1,7 +1,7 @@
 //courses.services.js
 
 
-const Course = require('../models/course.models');
+import Course from '../models/course.models.js';
 
 const courseService = {
     updateCourseTitle: async (id, title) => {
@@ -50,4 +50,4 @@ const courseService = {
     }
 };
 
-module.exports = courseService;
+export default courseService;
